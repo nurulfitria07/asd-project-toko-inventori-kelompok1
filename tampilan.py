@@ -13,3 +13,11 @@ def format_rupiah(angka):
         # Ada pecahan: pakai koma sebagai pemisah desimal (gaya Indonesia)
         teks = f"{angka:,.2f}".replace(",", "#").replace(".", ",").replace("#", ".")
     return "Rp " + teks
+
+def cetak_header(judul):
+    """Mencetak judul dengan garis pemisah di atas dan bawah."""
+    garis = "=" * LEBAR_HEADER
+    print()
+    print(garis)
+    print(judul.center(LEBAR_HEADER))
+    print(garis)

@@ -22,3 +22,24 @@ def update_stok():
     produk["stok"] = stok_baru
     print(f"Stok produk {produk['nama']} berhasil diperbarui: "
           f"{stok_lama} menjadi {stok_baru}")
+
+def update_harga():
+    """Fitur 5: mengganti harga satuan produk dengan nilai baru."""
+    print("\n--- UPDATE HARGA PRODUK ---")
+
+    kode = input_tidak_kosong("Kode produk yang diupdate: ")
+    index = cari_index_by_kode(kode)
+    if index == -1:
+        print(f"Error: produk dengan kode '{kode}' tidak ditemukan.")
+        return
+
+    produk = daftar_produk[index]
+    print(f"Produk     : {produk['nama']}")
+    print(f"Harga saat ini: {format_rupiah(produk['harga'])}")
+
+    harga_baru = input_harga("Harga baru (Rp, harus > 0): ")
+
+    harga_lama = produk["harga"]
+    produk["harga"] = harga_baru
+    print(f"Harga produk {produk['nama']} berhasil diperbarui: "
+          f"{format_rupiah(harga_lama)} menjadi {format_rupiah(harga_baru)}")

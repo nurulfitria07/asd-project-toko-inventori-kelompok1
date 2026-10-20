@@ -1,3 +1,5 @@
+from produk import daftar_produk
+
 LEBAR_HEADER = 60
 # Kolom tabel dan perataannya: "kanan" untuk angka, "kiri" untuk teks
 NAMA_KOLOM = ["No", "Kode", "Nama", "Kategori", "Harga", "Stok"]

@@ -26,3 +26,33 @@ def jeda():
         input("\nTekan Enter untuk kembali ke menu...")
     except (EOFError, KeyboardInterrupt):
         pass
+
+def main():
+    """Loop utama program: tampilkan menu, baca pilihan, jalankan fitur."""
+    while True:
+        tampilkan_menu()
+
+        try:
+            pilihan = input("\nPilih menu (0-6): ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nProgram dihentikan.")
+            break
+
+        if pilihan == "0":
+            print("Terima kasih. Program selesai.")
+            break
+
+        if pilihan in MENU:
+            _label, fungsi = MENU[pilihan]
+            try:
+                fungsi()
+            except (EOFError, KeyboardInterrupt):
+                # Ctrl+C di tengah fitur tidak boleh membuat program berhenti
+                print("\nOperasi dibatalkan, kembali ke menu.")
+        else:
+            print("Pilihan tidak valid. Masukkan angka 0 sampai 6.")
+
+        jeda()
+
+if __name__ == "__main__":
+    main()

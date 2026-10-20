@@ -66,3 +66,14 @@ def cetak_tabel(list_produk):
             _rata_teks(sel, lebar_kolom[i], RATA_KOLOM[i])
             for i, sel in enumerate(baris)
         ))
+
+def tampilkan_semua_produk():
+    """Fitur 2: menampilkan seluruh produk dalam bentuk tabel."""
+    print("\n--- DAFTAR SEMUA PRODUK ---")
+
+    if len(daftar_produk) == 0:
+        print("Belum ada produk yang tersimpan.")
+        return
+
+    cetak_tabel(daftar_produk)
+    print(f"\nTotal: {len(daftar_produk)} produk.")

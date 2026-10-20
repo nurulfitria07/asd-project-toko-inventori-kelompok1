@@ -1,5 +1,5 @@
 from produk import daftar_produk, cari_index_by_kode  
-from validasi import input_tidak_kosong  
+from validasi import input_konfirmasi, input_tidak_kosong  
 from tampilan import cetak_tabel
 
 def hapus_produk():
@@ -18,3 +18,10 @@ def hapus_produk():
     print("\nProduk yang akan dihapus:")  
     cetak_tabel([produk])  
     print()
+
+    if input_konfirmasi(f"Yakin ingin menghapus '{produk['nama']}'? (y/n): "):  
+        nama = produk["nama"]  
+        del daftar_produk[index]  # hapus langsung dari list yang sama  
+        print(f"Produk {nama} berhasil dihapus dari sistem.")  
+    else:  
+        print("Penghapusan dibatalkan.")  

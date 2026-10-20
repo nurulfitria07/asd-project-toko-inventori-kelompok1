@@ -19,3 +19,10 @@ def tampilkan_menu():
     for pilihan, (label, _fungsi) in MENU.items():
         print(f"  {pilihan}. {label}")
     print("  0. Keluar")
+
+def jeda():
+    """Menahan layar sampai operator menekan Enter agar hasil sempat dibaca."""
+    try:
+        input("\nTekan Enter untuk kembali ke menu...")
+    except (EOFError, KeyboardInterrupt):
+        pass

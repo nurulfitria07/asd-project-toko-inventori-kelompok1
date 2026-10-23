@@ -6,6 +6,11 @@ def update_stok():
     """Fitur 4: mengganti stok produk dengan nilai baru (bukan penambahan)."""
     print("\n--- UPDATE STOK PRODUK ---")
 
+    #cek apakah ada produk yang tersimpan
+    if len(daftar_produk) == 0:
+        print("Belum ada produk yang tersimpan.")
+        return
+
     kode = input_tidak_kosong("Kode produk yang diupdate: ")
     index = cari_index_by_kode(kode)
     if index == -1:
@@ -26,6 +31,11 @@ def update_stok():
 def update_harga():
     """Fitur 5: mengganti harga satuan produk dengan nilai baru."""
     print("\n--- UPDATE HARGA PRODUK ---")
+
+    #cek apakah ada produk yang tersimpan
+    if len(daftar_produk) == 0:
+        print("Belum ada produk yang tersimpan.")
+        return
 
     kode = input_tidak_kosong("Kode produk yang diupdate: ")
     index = cari_index_by_kode(kode)

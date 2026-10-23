@@ -27,6 +27,12 @@ def cari_by_nama(kata_kunci):
 def cari_produk():
     """Fitur 3: operator memilih mode pencarian lalu memasukkan kata kunci."""
     print("\n--- CARI PRODUK ---")
+
+    #cek apakah ada produk yang tersimpan
+    if len(daftar_produk) == 0:
+        print("Belum ada produk yang tersimpan.")
+        return
+    
     print("Cari berdasarkan:")
     print("  1. Kode produk (harus persis sama)")
     print("  2. Nama produk (cukup mengandung kata kunci)")

@@ -6,6 +6,11 @@ def hapus_produk():
     """Fitur 6: menghapus produk berdasarkan kode setelah operator konfirmasi."""
     print("\n--- HAPUS PRODUK ---")
 
+    #cek apakah ada produk yang tersimpan
+    if len(daftar_produk) == 0:
+        print("Belum ada produk yang tersimpan.")
+        return
+
     kode = input_tidak_kosong("Kode produk yang akan dihapus: ")  
     index = cari_index_by_kode(kode)  
     if index == -1:  

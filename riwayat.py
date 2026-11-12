@@ -22,3 +22,5 @@ class LinkedListRiwayat:
             node_terakhir.next = node_baru
 
         self.jumlah += 1
+
+daftar_riwayat = LinkedListRiwayat()

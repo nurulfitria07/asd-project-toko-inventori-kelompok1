@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Node:
     """Satu simpul pada linked list. Menyimpan satu dict riwayat sebagai data."""
 
@@ -24,3 +26,10 @@ class LinkedListRiwayat:
         self.jumlah += 1
 
 daftar_riwayat = LinkedListRiwayat()
+
+AKSI_TAMBAH = "TAMBAH"
+AKSI_UBAH_STOK = "UBAH_STOK"
+AKSI_UBAH_HARGA = "UBAH_HARGA"
+AKSI_HAPUS = "HAPUS"
+
+DAFTAR_AKSI = [AKSI_TAMBAH, AKSI_UBAH_STOK, AKSI_UBAH_HARGA, AKSI_HAPUS]

@@ -1,4 +1,5 @@
 from validasi import input_tidak_kosong, input_harga, input_stok
+from riwayat import catat_riwayat, ringkasan_produk, AKSI_TAMBAH
 
 daftar_produk = []
 
@@ -42,3 +43,5 @@ def tambah_produk():
     produk_baru = buat_produk(kode, nama, kategori, harga, stok)
     daftar_produk.append(produk_baru)
     print(f"Produk {nama} berhasil ditambahkan.")
+
+    catat_riwayat(AKSI_TAMBAH, produk_baru, "-", ringkasan_produk(produk_baru))

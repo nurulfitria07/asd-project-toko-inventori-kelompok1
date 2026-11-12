@@ -33,3 +33,12 @@ AKSI_UBAH_HARGA = "UBAH_HARGA"
 AKSI_HAPUS = "HAPUS"
 
 DAFTAR_AKSI = [AKSI_TAMBAH, AKSI_UBAH_STOK, AKSI_UBAH_HARGA, AKSI_HAPUS]
+
+def angka_ke_teks(angka):
+    angka = float(angka)
+    if angka.is_integer():
+        return str(int(angka))
+    return str(angka)
+
+def ringkasan_produk(produk):
+    return f"stok={produk['stok']}; harga={angka_ke_teks(produk['harga'])}"

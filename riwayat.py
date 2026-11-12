@@ -42,3 +42,15 @@ def angka_ke_teks(angka):
 
 def ringkasan_produk(produk):
     return f"stok={produk['stok']}; harga={angka_ke_teks(produk['harga'])}"
+
+def catat_riwayat(aksi, produk, nilai_lama, nilai_baru):
+    riwayat = {
+        "no_urut": daftar_riwayat.jumlah + 1,
+        "aksi": aksi,
+        "kode_produk": produk["kode_produk"],
+        "nama_produk": produk["nama"],
+        "nilai_lama": nilai_lama,
+        "nilai_baru": nilai_baru,
+        "waktu": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    daftar_riwayat.insert_akhir(riwayat)

@@ -68,3 +68,19 @@ def input_konfirmasi(prompt):
         if jawaban == "n":
             return False
         print("Error: jawab dengan 'y' (ya) atau 'n' (tidak).")
+
+
+def input_jumlah_riwayat(prompt):
+   
+    while True:
+        teks = input(prompt).strip()
+        try:
+            jumlah = int(teks)  
+        except ValueError:
+            print("Error: jumlah harus berupa angka bulat (contoh: 5).")
+            continue
+
+        if jumlah <= 0:
+            print("Error: jumlah harus lebih dari 0.")
+        else:
+            return jumlah

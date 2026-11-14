@@ -97,3 +97,18 @@ def cetak_header_tabel_riwayat():
     garis = "─┼─".join("─" * lebar for lebar in LEBAR_KOLOM_RIWAYAT)
     print(header)
     print(garis)
+
+def cetak_baris_riwayat(riwayat): #mencetak satu baris tabel dari satu dict riwayat
+    sel = [
+        str(riwayat["no_urut"]),
+        riwayat["waktu"],
+        riwayat["aksi"],
+        riwayat["kode_produk"],
+        riwayat["nama_produk"],
+        riwayat["nilai_lama"],
+        riwayat["nilai_baru"],
+    ]
+    print(" │ ".join(
+        _rata_teks(_potong_teks(isi, LEBAR_KOLOM_RIWAYAT[i]), LEBAR_KOLOM_RIWAYAT[i], RATA_KOLOM_RIWAYAT[i])
+        for i, isi in enumerate(sel)
+    ))

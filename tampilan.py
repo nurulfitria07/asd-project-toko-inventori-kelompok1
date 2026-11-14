@@ -1,4 +1,5 @@
 from produk import daftar_produk
+from riwayat import daftar_riwayat, DAFTAR_AKSI
 
 LEBAR_HEADER = 60
 # Kolom tabel dan perataannya: "kanan" untuk angka, "kiri" untuk teks
@@ -112,3 +113,26 @@ def cetak_baris_riwayat(riwayat): #mencetak satu baris tabel dari satu dict riwa
         _rata_teks(_potong_teks(isi, LEBAR_KOLOM_RIWAYAT[i]), LEBAR_KOLOM_RIWAYAT[i], RATA_KOLOM_RIWAYAT[i])
         for i, isi in enumerate(sel)
     ))
+
+def tampilkan_semua_riwayat():
+    print("\n--- RIWAYAT TRANSAKSI ---")
+
+    if daftar_riwayat.head is None:
+        print("Belum ada riwayat transaksi.")
+        return
+
+    # Hitungan per aksi disimpan di dict kecil
+    jumlah_per_aksi = {aksi: 0 for aksi in DAFTAR_AKSI}
+    cetak_header_tabel_riwayat()
+
+    # Node.next menjadi None saat sudah sampai di akhir daftar, sehingga loop berhenti
+    node = daftar_riwayat.head
+    while node is not None:
+        cetak_baris_riwayat(node.data)
+        jumlah_per_aksi[node.data["aksi"]] += 1
+        node = node.next
+
+    ringkasan = " │ ".join(
+        f"{aksi} {jumlah}" for aksi, jumlah in jumlah_per_aksi.items()
+    )
+    print(f"\nRingkasan: {ringkasan} │ Total {daftar_riwayat.jumlah}")

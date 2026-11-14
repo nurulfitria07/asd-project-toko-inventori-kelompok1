@@ -79,3 +79,21 @@ def tampilkan_semua_produk():
 
     cetak_tabel(daftar_produk)
     print(f"\nTotal: {len(daftar_produk)} produk.")
+
+NAMA_KOLOM_RIWAYAT = ["No", "Waktu", "Aksi", "Kode", "Nama Produk","Nilai Lama", "Nilai Baru"]
+LEBAR_KOLOM_RIWAYAT = [4, 19, 10, 7, 12, 24, 24]  # total 118 karakter dengan pemisah
+RATA_KOLOM_RIWAYAT = ["kanan", "kiri", "kiri", "kiri", "kiri", "kiri", "kiri"]
+
+def _potong_teks(teks, lebar):
+    if len(teks) <= lebar:
+        return teks
+    return teks[:lebar - 1] + "…"
+
+def cetak_header_tabel_riwayat():
+    header = " │ ".join(
+        _rata_teks(nama, LEBAR_KOLOM_RIWAYAT[i], RATA_KOLOM_RIWAYAT[i])
+        for i, nama in enumerate(NAMA_KOLOM_RIWAYAT)
+    )
+    garis = "─┼─".join("─" * lebar for lebar in LEBAR_KOLOM_RIWAYAT)
+    print(header)
+    print(garis)

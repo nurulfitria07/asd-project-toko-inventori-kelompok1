@@ -1,4 +1,5 @@
 from produk import daftar_produk
+from riwayat import daftar_riwayat, DAFTAR_AKSI
 
 LEBAR_HEADER = 60
 # Kolom tabel dan perataannya: "kanan" untuk angka, "kiri" untuk teks
@@ -79,3 +80,59 @@ def tampilkan_semua_produk():
 
     cetak_tabel(daftar_produk)
     print(f"\nTotal: {len(daftar_produk)} produk.")
+
+NAMA_KOLOM_RIWAYAT = ["No", "Waktu", "Aksi", "Kode", "Nama Produk","Nilai Lama", "Nilai Baru"]
+LEBAR_KOLOM_RIWAYAT = [4, 19, 10, 7, 12, 24, 24]  # total 118 karakter dengan pemisah
+RATA_KOLOM_RIWAYAT = ["kanan", "kiri", "kiri", "kiri", "kiri", "kiri", "kiri"]
+
+def _potong_teks(teks, lebar):
+    if len(teks) <= lebar:
+        return teks
+    return teks[:lebar - 1] + "…"
+
+def cetak_header_tabel_riwayat():
+    header = " │ ".join(
+        _rata_teks(nama, LEBAR_KOLOM_RIWAYAT[i], RATA_KOLOM_RIWAYAT[i])
+        for i, nama in enumerate(NAMA_KOLOM_RIWAYAT)
+    )
+    garis = "─┼─".join("─" * lebar for lebar in LEBAR_KOLOM_RIWAYAT)
+    print(header)
+    print(garis)
+
+def cetak_baris_riwayat(riwayat): #mencetak satu baris tabel dari satu dict riwayat
+    sel = [
+        str(riwayat["no_urut"]),
+        riwayat["waktu"],
+        riwayat["aksi"],
+        riwayat["kode_produk"],
+        riwayat["nama_produk"],
+        riwayat["nilai_lama"],
+        riwayat["nilai_baru"],
+    ]
+    print(" │ ".join(
+        _rata_teks(_potong_teks(isi, LEBAR_KOLOM_RIWAYAT[i]), LEBAR_KOLOM_RIWAYAT[i], RATA_KOLOM_RIWAYAT[i])
+        for i, isi in enumerate(sel)
+    ))
+
+def tampilkan_semua_riwayat():
+    print("\n--- RIWAYAT TRANSAKSI ---")
+
+    if daftar_riwayat.head is None:
+        print("Belum ada riwayat transaksi.")
+        return
+
+    # Hitungan per aksi disimpan di dict kecil
+    jumlah_per_aksi = {aksi: 0 for aksi in DAFTAR_AKSI}
+    cetak_header_tabel_riwayat()
+
+    # Node.next menjadi None saat sudah sampai di akhir daftar, sehingga loop berhenti
+    node = daftar_riwayat.head
+    while node is not None:
+        cetak_baris_riwayat(node.data)
+        jumlah_per_aksi[node.data["aksi"]] += 1
+        node = node.next
+
+    ringkasan = " │ ".join(
+        f"{aksi} {jumlah}" for aksi, jumlah in jumlah_per_aksi.items()
+    )
+    print(f"\nRingkasan: {ringkasan} │ Total {daftar_riwayat.jumlah}")

@@ -1,6 +1,7 @@
 from produk import daftar_produk, cari_index_by_kode
 from validasi import input_tidak_kosong, input_harga, input_stok
 from tampilan import format_rupiah
+from riwayat import catat_riwayat, angka_ke_teks, AKSI_UBAH_STOK, AKSI_UBAH_HARGA
 
 def update_stok():
     """Fitur 4: mengganti stok produk dengan nilai baru (bukan penambahan)."""

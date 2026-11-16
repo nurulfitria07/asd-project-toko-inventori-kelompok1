@@ -28,6 +28,7 @@ def update_stok():
     produk["stok"] = stok_baru
     print(f"Stok produk {produk['nama']} berhasil diperbarui: "
           f"{stok_lama} menjadi {stok_baru}")
+    catat_riwayat(AKSI_UBAH_STOK, produk, stok_lama, stok_baru)
 
 def update_harga():
     """Fitur 5: mengganti harga satuan produk dengan nilai baru."""
@@ -54,3 +55,4 @@ def update_harga():
     produk["harga"] = harga_baru
     print(f"Harga produk {produk['nama']} berhasil diperbarui: "
           f"{format_rupiah(harga_lama)} menjadi {format_rupiah(harga_baru)}")
+    catat_riwayat(AKSI_UBAH_HARGA, produk, angka_ke_teks(harga_lama), angka_ke_teks(harga_baru))

@@ -27,6 +27,9 @@ def hapus_produk():
 
     if input_konfirmasi(f"Yakin ingin menghapus '{produk['nama']}'? (y/n): "):  
         nama = produk["nama"]  
+
+        catat_riwayat(AKSI_HAPUS, produk, ringkasan_produk(produk), "-")
+
         del daftar_produk[index]  # hapus langsung dari list yang sama  
         print(f"Produk {nama} berhasil dihapus dari sistem.")  
     else:  

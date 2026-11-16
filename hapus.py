@@ -1,6 +1,7 @@
 from produk import daftar_produk, cari_index_by_kode  
 from validasi import input_konfirmasi, input_tidak_kosong  
 from tampilan import cetak_tabel
+from riwayat import catat_riwayat, ringkasan_produk, AKSI_HAPUS
 
 def hapus_produk():
     """Fitur 6: menghapus produk berdasarkan kode setelah operator konfirmasi."""

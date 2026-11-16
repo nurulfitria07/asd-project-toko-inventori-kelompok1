@@ -1,6 +1,7 @@
 from produk import daftar_produk, cari_index_by_kode  
 from validasi import input_konfirmasi, input_tidak_kosong  
 from tampilan import cetak_tabel
+from riwayat import catat_riwayat, ringkasan_produk, AKSI_HAPUS
 
 def hapus_produk():
     """Fitur 6: menghapus produk berdasarkan kode setelah operator konfirmasi."""
@@ -26,6 +27,9 @@ def hapus_produk():
 
     if input_konfirmasi(f"Yakin ingin menghapus '{produk['nama']}'? (y/n): "):  
         nama = produk["nama"]  
+
+        catat_riwayat(AKSI_HAPUS, produk, ringkasan_produk(produk), "-")
+
         del daftar_produk[index]  # hapus langsung dari list yang sama  
         print(f"Produk {nama} berhasil dihapus dari sistem.")  
     else:  

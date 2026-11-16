@@ -1,6 +1,7 @@
 from produk import daftar_produk, cari_index_by_kode
 from validasi import input_tidak_kosong, input_harga, input_stok
 from tampilan import format_rupiah
+from riwayat import catat_riwayat, angka_ke_teks, AKSI_UBAH_STOK, AKSI_UBAH_HARGA
 
 def update_stok():
     """Fitur 4: mengganti stok produk dengan nilai baru (bukan penambahan)."""
@@ -27,6 +28,7 @@ def update_stok():
     produk["stok"] = stok_baru
     print(f"Stok produk {produk['nama']} berhasil diperbarui: "
           f"{stok_lama} menjadi {stok_baru}")
+    catat_riwayat(AKSI_UBAH_STOK, produk, stok_lama, stok_baru)
 
 def update_harga():
     """Fitur 5: mengganti harga satuan produk dengan nilai baru."""
@@ -53,3 +55,4 @@ def update_harga():
     produk["harga"] = harga_baru
     print(f"Harga produk {produk['nama']} berhasil diperbarui: "
           f"{format_rupiah(harga_lama)} menjadi {format_rupiah(harga_baru)}")
+    catat_riwayat(AKSI_UBAH_HARGA, produk, angka_ke_teks(harga_lama), angka_ke_teks(harga_baru))

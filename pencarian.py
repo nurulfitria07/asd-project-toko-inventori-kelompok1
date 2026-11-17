@@ -2,6 +2,7 @@ from produk import daftar_produk, cari_index_by_kode
 from validasi import input_tidak_kosong
 from tampilan import cetak_tabel
 from riwayat import daftar_riwayat
+from tampilan import cetak_header_tabel_riwayat, cetak_baris_riwayat
 
 def cari_by_kode(kode):
     """Mencari produk dengan kode yang persis sama.
@@ -70,3 +71,22 @@ def _hitung_riwayat_produk(kode):
             jumlah += 1
         node = node.next
     return jumlah
+
+def tampilkan_riwayat_produk():
+    print("\n--- RIWAYAT PER PRODUK ---")
+
+    kode = input_tidak_kosong("Masukkan kode produk: ")
+
+    jumlah = _hitung_riwayat_produk(kode)
+    if jumlah == 0:
+        print(f"Tidak ada riwayat untuk produk dengan kode '{kode}'.")
+        return
+
+    print(f"\nMenampilkan {jumlah} riwayat untuk produk {kode}.\n")
+    cetak_header_tabel_riwayat()
+
+    node = daftar_riwayat.head
+    while node is not None:
+        if node.data["kode_produk"] == kode:
+            cetak_baris_riwayat(node.data)
+        node = node.next

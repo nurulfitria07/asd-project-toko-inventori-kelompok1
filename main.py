@@ -3,6 +3,8 @@ from tampilan import cetak_header, tampilkan_semua_produk
 from pencarian import cari_produk
 from update import update_stok, update_harga
 from hapus import hapus_produk
+from tampilan import tampilkan_semua_riwayat
+from pencarian import tampilkan_riwayat_produk
 
 MENU = {
     "1": ("Tambah produk baru", tambah_produk),
@@ -11,6 +13,8 @@ MENU = {
     "4": ("Update stok produk", update_stok),
     "5": ("Update harga produk", update_harga),
     "6": ("Hapus produk", hapus_produk),
+    "7": ("Tampilkan riwayat transaksi", tampilkan_semua_riwayat),
+    "8": ("Riwayat per produk", tampilkan_riwayat_produk)
 }
 
 def tampilkan_menu():

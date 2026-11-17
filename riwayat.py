@@ -5,11 +5,13 @@ class Node:
 
     def __init__(self, data):
         self.data = data
+        self.prev = None #DOUBLY
         self.next = None
 
 class LinkedListRiwayat:
     def __init__(self):
         self.head = None
+        self.tail = None  # DOUBLY
         self.jumlah = 0
 
     def insert_akhir(self, data):
@@ -17,12 +19,12 @@ class LinkedListRiwayat:
 
         if self.head is None:
             self.head = node_baru
+            self.tail = node_baru  # DOUBLY
         else:
-            node_terakhir = self.head
-            while node_terakhir.next is not None:
-                node_terakhir = node_terakhir.next
-            node_terakhir.next = node_baru
-
+            node_baru.prev = self.tail  # DOUBLY
+            self.tail.next = node_baru  # DOUBLY
+            self.tail = node_baru  # DOUBLY
+            
         self.jumlah += 1
 
 daftar_riwayat = LinkedListRiwayat()

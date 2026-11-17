@@ -16,6 +16,11 @@
 
 Sistem Manajemen Toko / Inventori adalah program berbasis terminal yang ditulis dengan Python untuk membantu operator mengelola data produk toko. Data produk disimpan dalam list berisi dictionary (array of struct) dengan atribut kode, nama, kategori, harga, dan stok. Program dilengkapi validasi input agar data yang masuk selalu benar dan konfirmasi sebelum penghapusan agar tidak terjadi salah hapus.
 
+Pada Tahap 2, sistem mencatat **riwayat transaksi** setiap kali produk ditambah,
+stok diubah, harga diubah, atau produk dihapus. Riwayat disimpan dalam
+**Doubly Linked List** buatan sendiri (`riwayat.py`), bukan list atau deque bawaan
+Python. Seluruh data hanya berada di memori, sehingga hilang saat program ditutup.
+
 ## 3. Cara Menjalankan
 
 ```bash
@@ -37,6 +42,9 @@ asd-project-toko-kelompok1/
 ├── tampilan.py     # format tabel & rupiah + tampilkan semua produk
 ├── pencarian.py    # cari produk
 ├── hapus.py        # hapus produk
+├── riwayat.py      # Node, Doubly Linked List, catat_riwayat() (R1)
+├── riwayat_terbaru.py # R4
+├── catatan-tahap2.md  # catatan teknis Tahap 2
 └── README.md
 ```
 
@@ -54,6 +62,19 @@ asd-project-toko-kelompok1/
 
 Fitur pendukung: validasi input teks, harga, stok, dan konfirmasi (`validasi.py`), serta format harga rupiah (contoh: `Rp 15.000`).
 
+### Fitur Tahap 2: Riwayat Transaksi (Linked List)
+
+|Kode|          Fitur          |Menu|                        Keterangan                           |
+|----|-------------------------|----|-------------------------------------------------------------|
+| R1 | Pencatatan otomatis     | -  | Dicatat setelah F1, F4, F5, dan F6 berhasil                 |
+|    |                         |    | Aksi gagal atau dibatalkan tidakdicatat.                    |
+| R2 | Tampilkan semua riwayat | 7  | Dari terlama ke terbaru, dengan ringkasan jumlah per aksi   |
+| R3 | Riwayat per produk      | 8  | Berdasarkan kode produk. Produk yang sudah dihapus tetap    |
+|    |                         |    | bisa                                                        |
+|    |                         |    | dicari.                                                     |
+| R4 | Riwayat terbaru         | 9  | N riwayat terakhir, dari terbaru ke terlama (traversal      |
+|    |                         |    | mundur lewat `tail` dan `prev`)                             |
+
 ## 5. Pembagian Tugas
 
 |      Anggota    |                                        Tugas                                          |            File            |
@@ -69,3 +90,20 @@ Fitur pendukung: validasi input teks, harga, stok, dan konfirmasi (`validasi.py`
 |                 | (`tampilkan_semua_produk`)                                                            | `tampilan.py`              |
 | Ikhwan Nurhakim | Membuat Fitur 3: `cari_by_kode`, `cari_by_nama`, dan `cari_produk`                    | `pencarian.py`             |
 # asd-project-toko-inventori-kelompok1
+
+### Tahap 2
+
+|     Anggota    |     File            |                    Tanggung jawab                    |
+|----------------|---------------------|------------------------------------------------------|
+| Ikhwan Nurhakim| `riwayat.py`,       | Class `Node` dan `LinkedListRiwayat` (Singly, lalu   |
+|                | `catatan-tahap2.md` | upgrade ke Doubly dengan `prev` dan `tail`)          |
+| Nurul Fitria   | `riwayat.py`,       | R1: `catat_riwayat()`, pencatatan di F1, menu 7, 8, 9|
+|                | `produk.py`,        |                                                      |
+|                |  `main.py`          |                                                      |
+| Raysah Naysila | `update.py`,        | R1: pencatatan di F4, F5, F6                         |
+|                |  `hapus.py`,        | R4`tampilkan_riwayat_terbaru()`                      |
+|                | `riwayat_terbaru.py`|                                                      |
+|   Nala Adyuta  | `tampilan.py`,      | R2: `tampilkan_semua_riwayat()` dan helper tabel     |
+|                | `README.md`         | riwayat                                              |
+|  Angga Faisal  | `pencarian.py`,     | R3: `tampilkan_riwayat_produk()`, validator          |
+|                |  `validasi.py`      | `input_jumlah_riwayat()`, pengujian                  |

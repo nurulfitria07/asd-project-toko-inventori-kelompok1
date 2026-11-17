@@ -1,6 +1,7 @@
 from produk import daftar_produk, cari_index_by_kode
 from validasi import input_tidak_kosong
 from tampilan import cetak_tabel
+from riwayat import daftar_riwayat
 
 def cari_by_kode(kode):
     """Mencari produk dengan kode yang persis sama.
@@ -60,3 +61,12 @@ def cari_produk():
 
     print(f"\nDitemukan {len(hasil)} produk:\n")
     cetak_tabel(hasil)
+
+def _hitung_riwayat_produk(kode):
+    jumlah = 0
+    node = daftar_riwayat.head
+    while node is not None:
+        if node.data["kode_produk"] == kode:
+            jumlah += 1
+        node = node.next
+    return jumlah

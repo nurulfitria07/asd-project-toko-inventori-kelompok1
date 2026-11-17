@@ -37,7 +37,7 @@ def main():
         tampilkan_menu()
 
         try:
-            pilihan = input("\nPilih menu (0-6): ").strip()
+            pilihan = input(f"\nPilih menu (0-{len(MENU)}): ").strip()
         except (EOFError, KeyboardInterrupt):
             print("\nProgram dihentikan.")
             break
@@ -54,7 +54,7 @@ def main():
                 # Ctrl+C di tengah fitur tidak boleh membuat program berhenti
                 print("\nOperasi dibatalkan, kembali ke menu.")
         else:
-            print("Pilihan tidak valid. Masukkan angka 0 sampai 6.")
+            print(f"Pilihan tidak valid. Masukkan angka 0 sampai {len(MENU)}.")
 
         jeda()
 
